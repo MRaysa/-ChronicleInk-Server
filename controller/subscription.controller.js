@@ -1,5 +1,5 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-const User = require("../model/userSchema");
+const User = require('../model/userSchema')
 
 exports.createPaymentIntent = async (req, res) => {
   const { amount } = req.body;
@@ -22,10 +22,11 @@ exports.createPaymentIntent = async (req, res) => {
   }
 };
 
+
 exports.makeUserPremium = async (req, res) => {
   try {
     const { uid } = req.user;
-
+    
     const { duration, unit } = req.body;
 
     if (!duration || !unit) {
@@ -53,7 +54,7 @@ exports.makeUserPremium = async (req, res) => {
       {
         $set: {
           role: "premium",
-          premiumTaken: new Date(),
+          premiumTaken: new Date(), 
           planEndDate,
         },
       }

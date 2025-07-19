@@ -41,6 +41,7 @@ exports.register = async (req, res) => {
   }
 };
 
+
 // check existence during social login
 exports.checkUserExists = async (req, res) => {
   const { uid } = req.params;
@@ -102,11 +103,9 @@ exports.updateLastLogin = async (req, res) => {
     );
 
     if (!user) {
-      return res
-        .status(404)
-        .json({ success: false, message: "User not found" });
+      return res.status(404).json({ success: false, message: "User not found" });
     }
-
+  
     res.json({ success: true, message: "Last login updated" });
   } catch (err) {
     res.status(500).json({ success: false, message: "Server error" });
