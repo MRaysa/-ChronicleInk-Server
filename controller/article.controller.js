@@ -157,7 +157,7 @@ exports.getTopViewedArticles = async (req, res) => {
   try {
     const topArticles = await Article.find({ status: "Approved" })
       .sort({ views: -1 })
-      .limit(5);
+      .limit(6);
 
     res.status(201).json(topArticles);
   } catch (error) {
