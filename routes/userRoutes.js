@@ -5,6 +5,7 @@ const {
   checkUserExists,
   getUserByUID,
   updateLastLogin,
+  updateUserProfile,
 } = require("../controller/user.controller");
 
 const verifyJWT = require("../middleware/verifyJWT");
@@ -21,5 +22,7 @@ router.get(
   getUserByUID
 );
 router.patch("/users/:uid/last-login", updateLastLogin);
+
+router.patch("/users/update", verifyJWT, updateUserProfile);
 
 module.exports = router;

@@ -21,7 +21,7 @@ exports.register = async (req, res) => {
       image,
       uid,
       email,
-      lastLogin: new Date(), // ✅ set last login on signup
+      lastLogin: new Date(),
     });
 
     await newUser.save();
@@ -40,7 +40,6 @@ exports.register = async (req, res) => {
     });
   }
 };
-
 
 // check existence during social login
 exports.checkUserExists = async (req, res) => {
@@ -103,11 +102,39 @@ exports.updateLastLogin = async (req, res) => {
     );
 
     if (!user) {
-      return res.status(404).json({ success: false, message: "User not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
     }
-  
+
     res.json({ success: true, message: "Last login updated" });
   } catch (err) {
     res.status(500).json({ success: false, message: "Server error" });
+  }
+};
+
+exports.updateUserProfile = async (req, res) => {
+  try {
+    const { uid } = req.user;
+    const { name, image } = req.body;
+    console.log(uid);
+
+    const updatedUser = await User.findOneAndUpdate(
+      { uid },
+      { name, image },
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json({
+      message: "Profile updated successfully",
+      user: updatedUser,
+    });
+  } catch (error) {
+    console.error("Error updating profile:", error);
+    res.status(500).json({ message: "Internal server error" });
   }
 };
