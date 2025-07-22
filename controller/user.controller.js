@@ -115,6 +115,9 @@ exports.updateLastLogin = async (req, res) => {
 
 exports.updateUserProfile = async (req, res) => {
   try {
+    console.log("Full Request User:", req.user); // Debugging
+    console.log("Request Body:", req.body); // Debugging
+
     const { uid } = req.user;
     const { name, image } = req.body;
     console.log(uid);
