@@ -76,8 +76,6 @@ Server will run at `http://localhost:5000`
 - **Admin:** `/articles/approve/:id`, `/all-users`, `/users/admin/:id`, etc.
 - **Subscription:** `/users/subscription`, `/users/premium/`
 
-See the [API documentation](#) for detailed request/response formats.
-
 ---
 
 ## 🚢 Deployment
