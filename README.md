@@ -36,7 +36,7 @@ news-server-main/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/news-server-main.git
+git clone https://github.com/MRaysa/-ChronicleInk-Server.git
 cd news-server-main
 ```
 
